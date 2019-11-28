@@ -48,3 +48,9 @@ for doc in range(0,len(reversed_file)) :
 		line='('+item[0]+','+str(doc)+')->'+str(item[1])+'\n'
 		reversed_txt.write(line)
 	reversed_txt.write("\n")
+
+def word_freq_per_doc(doc , reversed_file):
+	liste=[(item[0] , item[1])for item in reversed_file[doc].items()]
+	return(liste)
+
+print(word_freq_per_doc(0 , reversed_file))
