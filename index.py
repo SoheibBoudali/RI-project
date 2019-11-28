@@ -34,9 +34,15 @@ for doc in liste_of_documents:
 	new_doc=""
 	for word in doc_punc.split():
 		if word.lower() not in stopWords:
-			new_doc+=" "+word
+			new_doc+=" "+word.lower()
 	tokens.append(new_doc) 
+reversed_file=[]
+from nltk import FreqDist
 for doc in tokens:
-	print(doc.split())
-	print("\n")
-
+	freqdist= FreqDist(doc.split())
+	reversed_file.append(freqdist)
+from operator import itemgetter
+for doc in range(0,len(reversed_file)) :
+	for item in reversed_file[doc].items():
+		print(item)
+	print('\n')
