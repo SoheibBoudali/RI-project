@@ -42,7 +42,9 @@ for doc in tokens:
 	freqdist= FreqDist(doc.split())
 	reversed_file.append(freqdist)
 from operator import itemgetter
+reversed_txt=open("reversed.txt","w+", encoding="utf-8")
 for doc in range(0,len(reversed_file)) :
 	for item in reversed_file[doc].items():
-		print(item)
-	print('\n')
+		line='('+item[0]+','+str(doc)+')->'+str(item[1])+'\n'
+		reversed_txt.write(line)
+	reversed_txt.write("\n")
