@@ -35,7 +35,9 @@ for doc in liste_of_documents:
 	for word in doc_punc.split():
 		if word.lower() not in stopWords:
 			new_doc+=" "+word.lower()
-	tokens.append(new_doc) 
+	new_doc+="\n"
+	tokens.append(new_doc)
+
 reversed_file=[]
 from nltk import FreqDist
 for doc in tokens:
@@ -47,6 +49,16 @@ for doc in range(0,len(reversed_file)) :
 	for item in reversed_file[doc].items():
 		line='('+item[0]+','+str(doc+1)+')->'+str(item[1])+'\n'
 		reversed_txt.write(line)
+index_txt=open("index.txt","w+", encoding="utf-8")
+line=""
+for doc in range(0,len(reversed_file)) :
+	index_txt.write(str(doc+1)+'\n')
+	for item in reversed_file[doc].items():
+		line='('+item[0]+','+str(item[1])+')\n'
+		index_txt.write(line)
+
+
+
 
 def word_freq_per_doc(doc , reversed_file):
 	liste=[(item[0] , item[1])for item in reversed_file[doc].items()]
@@ -60,5 +72,4 @@ def docs_freq_per_word(word , reversed_file):
 				liste.append((doc+1 , item[1]))
 	return(liste)
 
-print(word_freq_per_doc(0 , reversed_file))
-print(docs_freq_per_word("state" , reversed_file))
+
