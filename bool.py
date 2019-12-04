@@ -35,6 +35,27 @@ def validate(requete):
 			return False
 	return True
 
-#Liste=change("index.txt")
-
-print(validate("hello And kh AND cedric"))
+Liste_of_docs=change("index.txt")
+def evaluate(requete , Liste_of_docs):
+	pert_docs=[]
+	for doc in range(0,len(Liste_of_docs)):
+		req=requete.split()
+		for i in range(0,len(req),2):
+			for word in range(0,len(Liste_of_docs[doc])):
+				if(Liste_of_docs[doc][word]["word"].lower()== req[i].lower()):
+					req[i]=1
+					break
+			if(req[i]!=1):
+				req[i]=0
+		req_string=""
+		for r in req:
+			req_string+=' '+str(r)
+		result = eval(req_string)
+		if(result == 1):
+			pert_docs.append('Documment : '+str(doc))
+	return pert_docs
+requete="state and repeated or roots"
+if validate(requete):
+	print(evaluate(requete , Liste_of_docs))
+else:
+	print('requete non valide')
