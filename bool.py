@@ -6,6 +6,7 @@ def change(index_file):
 	for line in range(0,len(file)):
 		if file[line].startswith("Doc"):
 			line+=1
+			words=[]
 			while(line<len(file) and not file[line].startswith("Doc")):
 				new_line=""
 				for char in file[line]:
@@ -14,28 +15,26 @@ def change(index_file):
 					else:
 						new_line+=char
 				new_l=new_line.split()
-				print(new_l)
+				dic=dict()
+				dic["word"]=new_l[0]
+				dic["freq"]=new_l[1]
+				words.append(dic)
 				line+=1
+			Liste_of_docs.append(words)
+	return Liste_of_docs
+def validate(requete):
+	operator=["and","or","not"]
+	req=requete.split()
+	if len(req)%2 == 0 :
+		return False
+	for i in range(1,len(req),2):
+		if req[i].lower() not in operator:
+			return False
+	for i in range(0,len(req),2):
+		if req[i].lower() in operator:
+			return False
+	return True
 
+#Liste=change("index.txt")
 
-'''def change(file):
-	special_chars="(,)->"
-	File=open(file,"r",encoding="utf-8")
-	lines=File.readlines()
-	liste=[]
-	for line in lines:
-		dic= dict()
-		new_line=""
-		for char in line:
-			if char in special_chars:
-				new_line+=' '
-			else:
-				new_line+=char
-		new_l=new_line.split()
-		dic["word"] = new_l[0]
-		dic["dic"] = new_l[1]
-		dic["freq"] = new_l[2]
-		liste.append(dic)
-	return liste
-'''
-change("index.txt")
+print(validate("hello And kh AND cedric"))
