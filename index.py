@@ -52,7 +52,7 @@ for doc in range(0,len(reversed_file)) :
 index_txt=open("index.txt","w+", encoding="utf-8")
 line=""
 for doc in range(0,len(reversed_file)) :
-	index_txt.write(str(doc+1)+'\n')
+	index_txt.write('Doc : '+str(doc+1)+'\n')
 	for item in reversed_file[doc].items():
 		line='('+item[0]+','+str(item[1])+')\n'
 		index_txt.write(line)
