@@ -23,8 +23,12 @@ def change(index_file):
 			Liste_of_docs.append(words)
 	return Liste_of_docs
 def validate(requete):
-	operator=["and","or","not"]
+	operator=["and","or"]
+	opr_not="not"
 	req=requete.split()
+	if(req[len(req)-1].lower()==opr_not):
+		return False
+	req=[r for r in req if r.lower()!= opr_not]
 	if len(req)%2 == 0 :
 		return False
 	for i in range(1,len(req),2):
@@ -35,26 +39,36 @@ def validate(requete):
 			return False
 	return True
 
-Liste_of_docs=change("index.txt")
 def evaluate(requete , Liste_of_docs):
 	pert_docs=[]
+	opr_not="not"
+	not_position=[]
+	requete_init=requete.split()
+	for i in range(0,len(requete_init)):
+		if requete_init[i].lower()==opr_not:
+			not_position.append(i)
+	requete_init = [r for r in requete_init if r.lower()!=opr_not]
 	for doc in range(0,len(Liste_of_docs)):
-		req=requete.split()
-		for i in range(0,len(req),2):
+		req=[r for r in requete_init]
+		for i in range(0,len(requete_init),2):
 			for word in range(0,len(Liste_of_docs[doc])):
-				if(Liste_of_docs[doc][word]["word"].lower()== req[i].lower()):
+				if Liste_of_docs[doc][word]["word"].lower()== req[i].lower():
 					req[i]=1
 					break
-			if(req[i]!=1):
+			if req[i]!=1:
 				req[i]=0
+		for pos in not_position:
+			req.insert(pos,opr_not)
 		req_string=""
 		for r in req:
 			req_string+=' '+str(r)
 		result = eval(req_string)
 		if(result == 1):
-			pert_docs.append('Documment : '+str(doc))
+			pert_docs.append('Documment : '+str(doc+1))
 	return pert_docs
-requete="state and repeated or roots"
+
+Liste_of_docs=change("index.txt")
+requete="state and repeated or roots and not home"
 if validate(requete):
 	print(evaluate(requete , Liste_of_docs))
 else:
