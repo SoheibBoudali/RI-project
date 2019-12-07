@@ -31,13 +31,14 @@ def ni(dict , word):
 	return len(liste)
 
 def weights(dictio):
-	file=open("weights.txt" , "w+" , encoding="utf-8")
+	file=open("weights_reversed.txt" , "w+" , encoding="utf-8")
 	N=Nbr(dictio)
 	for line in range(0,len(dictio)):
 		poid_string=""
 		#poids(ti, dj)=(freq(ti,dj)/Max(freq(dj))*Log((N/ni) +1)
 		poid=int(dictio[line]["freq"])/int(maxi(dictio,int(dictio[line]["dic"])))*math.log10(N/ni(dictio,dictio[line]["word"])) + 1
-		poid_string="poids("+str(dictio[line]["word"])+','+str(dictio[line]["dic"])+")="+str(poid)+'\n'
+		#poid_string="poids("+str(dictio[line]["word"])+','+str(dictio[line]["dic"])+")="+str(poid)+'\n'
+		poid_string="("+str(dictio[line]["word"])+','+str(dictio[line]["dic"])+")->"+str(poid)+'\n'
 		file.write(poid_string)
 
 Dict=change("reversed.txt")
