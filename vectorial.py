@@ -38,3 +38,32 @@ def produit_interne(file , requete):
 	else:
 		return pertinant_doc
 
+def Coef_de_Dice(file , requete):
+	requete=requete.split()
+	i=1
+	pertinant_doc=[]
+	while i < 3205:
+		document=[line for line in file if int(line["dic"])==(i)]
+		top=0
+		down_ti=0
+		down_qi=0
+		poid=0
+		for doc in document:
+			for word in requete:
+				if word.lower()==doc["word"]:
+					top+=float(doc["weight"])
+					down_ti+=float(doc["weight"])*float(doc["weight"])
+					down_qi+=1
+		if down_qi != 0 :
+			poid=(2*top) / (down_ti + down_qi)
+			print("document :"+str(i)+" poid "+str(poid))
+			if poid != 0:
+				pertinant_doc.append("document: "+str(i)+" poid : "+str(poid))
+		i+=1
+	if len(pertinant_doc) == 0:
+		return False
+	else:
+		return pertinant_doc
+
+requete="preliminary state" 
+print(Coef_de_Dice(file , requete))
