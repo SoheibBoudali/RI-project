@@ -1,4 +1,4 @@
-def change(file):
+def change_vect(file):
 	special_chars="(,)->"
 	File=open(file,"r",encoding="utf-8")
 	lines=File.readlines()
@@ -17,7 +17,6 @@ def change(file):
 		dic["weight"] = new_l[2]
 		liste.append(dic)
 	return liste
-file=change("weights_reversed.txt")
 
 def produit_interne(file , requete):
 	requete=requete.split()
@@ -31,6 +30,7 @@ def produit_interne(file , requete):
 				if word.lower()==doc["word"]:
 					poid+=float(doc["weight"])
 		if poid != 0:
+			print(poid)
 			pertinant_doc.append("document: "+str(i)+" poid : "+str(poid))
 		i+=1
 	if len(pertinant_doc) == 0:
@@ -120,5 +120,6 @@ def Mesure_de_jaccard(file , requete):
 		return pertinant_doc
 
 from math import *
+'''file=change("weights_reversed.txt")
 requete="preliminary state" 
-print(Mesure_de_jaccard(file , requete))
+print(Mesure_de_jaccard(file , requete))'''

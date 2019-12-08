@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="Bool_btn">
+   <widget class="QPushButton" name="bool_btn">
     <property name="geometry">
      <rect>
       <x>330</x>
@@ -132,7 +132,7 @@
      <string>Vectoriel model</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="bool_req">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -142,7 +142,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="vect_req">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -226,7 +226,7 @@
      <string>Request :</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="vectorial_btn">
+   <widget class="QPushButton" name="vect_btn">
     <property name="geometry">
      <rect>
       <x>880</x>
@@ -269,7 +269,7 @@
      </property>
     </item>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="bool_result">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -279,7 +279,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_2">
+   <widget class="QTextEdit" name="vect_result">
     <property name="geometry">
      <rect>
       <x>520</x>
