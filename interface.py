@@ -35,7 +35,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     	if req == "":
     		self.vect_result.setText('requete vide')
     	else:	
-    		file=change("weights_reversed.txt")
+    		file=change_vect("weights_reversed.txt")
     		if self.comboBox.currentText()=="produit_interne":
     			liste=produit_interne(file , req)
     			if liste != False:
