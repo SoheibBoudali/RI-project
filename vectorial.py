@@ -31,12 +31,9 @@ def produit_interne(file , requete):
 					poid+=float(doc["weight"])
 		if poid != 0:
 			print(poid)
-			pertinant_doc.append("document: "+str(i)+" poid : "+str(poid))
+			pertinant_doc.append([i,poid])
 		i+=1
-	if len(pertinant_doc) == 0:
-		return False
-	else:
-		return pertinant_doc
+	return pertinant_doc
 
 def Coef_de_Dice(file , requete):
 	requete=requete.split()
@@ -58,12 +55,9 @@ def Coef_de_Dice(file , requete):
 			poid=(2*top) / (down_ti + down_qi)
 			print("document :"+str(i)+" poid "+str(poid))
 			if poid != 0:
-				pertinant_doc.append("document: "+str(i)+" poid : "+str(poid))
+				pertinant_doc.append([i,poid])
 		i+=1
-	if len(pertinant_doc) == 0:
-		return False
-	else:
-		return pertinant_doc
+	return pertinant_doc
 
 def Mesure_de_cosinus(file , requete):
 	requete=requete.split()
@@ -85,12 +79,9 @@ def Mesure_de_cosinus(file , requete):
 			poid=top / sqrt(down_ti + down_qi)
 			print("document :"+str(i)+" poid "+str(poid))
 			if poid != 0:
-				pertinant_doc.append("document: "+str(i)+" poid : "+str(poid))
+				pertinant_doc.append([i,poid])
 		i+=1
-	if len(pertinant_doc) == 0:
-		return False
-	else:
-		return pertinant_doc
+	return pertinant_doc
 
 def Mesure_de_jaccard(file , requete):
 	requete=requete.split()
@@ -112,12 +103,9 @@ def Mesure_de_jaccard(file , requete):
 			poid=top / ( down_ti + down_qi - top)
 			print("document :"+str(i)+" poid "+str(poid))
 			if poid != 0:
-				pertinant_doc.append("document: "+str(i)+" poid : "+str(poid))
+				pertinant_doc.append([i,poid])
 		i+=1
-	if len(pertinant_doc) == 0:
-		return False
-	else:
-		return pertinant_doc
+	return pertinant_doc
 
 from math import *
 '''file=change("weights_reversed.txt")

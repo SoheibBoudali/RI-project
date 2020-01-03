@@ -1,3 +1,6 @@
+from nltk.corpus import stopwords
+import string
+
 #create a fuction that read qrels file and return for each req a liste of docs
 def req_docs(file_name):
 	file=open(file_name,"r",encoding="utf-8").readlines()
@@ -18,7 +21,7 @@ def req_docs(file_name):
 			else:
 				exit=1
 		i+=cpt
-		dic[line_i[0]]=docs
+		dic[int(line_i[0])]=docs
 	return dic
 #print(req_docs("cacm/qrels.text"))
 
@@ -39,10 +42,35 @@ def index_req(file_name):
 						i+=1
 				i+=1
 			liste_of_documents.append(document)
-	i=1
+	stopWords = stopwords.words('english')
+	punctuation=string.punctuation
+	new_liste=[]
 	for doc in liste_of_documents:
+		doc_punc=""
+		for c in doc:
+			if c not in punctuation:
+				doc_punc+=c
+		new_doc=""
+		for word in doc_punc.split():
+			if word.lower() not in stopWords:
+				new_doc+=" "+word.lower()
+		new_liste.append(new_doc)
+	i=1
+	for doc in new_liste:
 		dic[i]=doc
 		i+=1
 	return dic
-#print(index_req("cacm/query.text"))
+#index_req("cacm/query.text")
 
+def rappel(sys_pert_docs , supo_pert_docs):
+	intersection=len([doc for doc in sys_pert_docs if doc in supo_pert_docs])
+	return intersection/len(supo_pert_docs)
+
+def precision(sys_pert_docs , supo_pert_docs):
+	intersection=len([doc for doc in sys_pert_docs if doc in supo_pert_docs])
+	return intersection/len(sys_pert_docs)
+
+'''sys_pert_docs=[1,2,3,4]
+supo_pert_docs=[2,4,5]
+print(rappel(sys_pert_docs,supo_pert_docs))
+print(precision(sys_pert_docs,supo_pert_docs))'''

@@ -153,7 +153,7 @@ widht:300px</string>
    <widget class="QLineEdit" name="bool_req">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>120</x>
       <y>130</y>
       <width>251</width>
       <height>26</height>
@@ -166,7 +166,7 @@ widht:300px</string>
    <widget class="QLineEdit" name="vect_req">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>650</x>
       <y>130</y>
       <width>281</width>
       <height>26</height>
@@ -567,13 +567,13 @@ widht:300px</string>
      <rect>
       <x>330</x>
       <y>600</y>
-      <width>291</width>
+      <width>150</width>
       <height>41</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>291</width>
+      <width>150</width>
       <height>0</height>
      </size>
     </property>
@@ -596,7 +596,7 @@ widht:300px</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>480</x>
       <y>600</y>
       <width>291</width>
       <height>41</height>
@@ -626,42 +626,22 @@ widht:300px</string>
      <rect>
       <x>340</x>
       <y>640</y>
-      <width>271</width>
+      <width>101</width>
       <height>141</height>
      </rect>
     </property>
     <column>
      <property name="text">
       <string>Doc</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>New Column</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>PI</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>CD</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>MJ</string>
      </property>
     </column>
    </widget>
    <widget class="QTableWidget" name="Systeme">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>480</x>
       <y>640</y>
-      <width>321</width>
+      <width>501</width>
       <height>141</height>
      </rect>
     </property>
@@ -672,17 +652,17 @@ widht:300px</string>
     </column>
     <column>
      <property name="text">
-      <string>New Column</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
       <string>PI</string>
      </property>
     </column>
     <column>
      <property name="text">
       <string>CD</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>MC</string>
      </property>
     </column>
     <column>
