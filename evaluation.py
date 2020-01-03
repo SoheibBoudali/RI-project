@@ -20,7 +20,7 @@ def req_docs(file_name):
 		i+=cpt
 		dic[line_i[0]]=docs
 	return dic
-print(req_docs("cacm/qrels.text"))
+#print(req_docs("cacm/qrels.text"))
 
 #create a function that read query file and return dictionnaire of req
 def index_req(file_name):
@@ -43,6 +43,6 @@ def index_req(file_name):
 	for doc in liste_of_documents:
 		dic[i]=doc
 		i+=1
-	for d in range(1,len(dic)+1):
-		print(dic[d])
-index_req("cacm/query.text")
+	return dic
+#print(index_req("cacm/query.text"))
+

@@ -5,6 +5,7 @@ from MainWindow import Ui_MainWindow
 from PySide2.QtCore import Slot, Qt
 from bool import *
 from vectorial import *
+from evaluation import *
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, obj=None, **kwargs):
@@ -12,7 +13,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.bool_btn.clicked.connect(self.bool)
         self.vect_btn.clicked.connect(self.vect)
-
+        dic = index_req("cacm/query.text")
+        self.tableWidget.setRowCount(len(dic))
+        i=0
+        for j in range(1,len(dic)+1):
+            self.tableWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(dic[j]))
+            i+=1
+        self.tableWidget.cellClicked.connect(self.query_selector)
+        self.Evaluate.clicked.connect(self.evaluation)
     @Slot()
     def bool(self):
     	Liste_of_docs=change_bool("index.txt")
@@ -70,6 +78,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 		    				self.vect_result.setText(result)
 		    			else:
 		    				self.vect_result.setText("no pertinant document")
+    def query_selector(self,row,column):
+        self.selected_query.setText(self.tableWidget.item(row, 0).text())
+        self.index.setText(str(row+1))
+        self.Evaluate.setEnabled(True)
+    def evaluation(self):
+        print("hello")
 
 app = QtWidgets.QApplication(sys.argv)
 window = MainWindow()
