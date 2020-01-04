@@ -65,7 +65,6 @@ for line in reversed_liste:
 
 import pickle
 
-# write python dict to a file
 output = open('reversed.pkl', 'wb')
 pickle.dump(reversed_liste, output)
 output.close()
