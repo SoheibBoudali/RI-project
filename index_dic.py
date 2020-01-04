@@ -69,10 +69,15 @@ pickle.dump(dictionnaire, output)
 output.close()
 
 '''# read python dict back from the file
-pkl_file = open('myfile.pkl', 'rb')
+pkl_file = open('index_dic.pkl', 'rb')
 mydict2 = pickle.load(pkl_file)
 pkl_file.close()
 
 print( mydict2)'''
+som=0
+print(len(dictionnaire[1]))
+for i in range(1,len(dictionnaire)+1):
+	som+=len(dictionnaire[i])
+print(som)
 end_time=time.time()
 print(end_time - start_time)

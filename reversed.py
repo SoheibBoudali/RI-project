@@ -1,3 +1,5 @@
+import time
+start_time = time.time()
 import string
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
@@ -46,41 +48,37 @@ for doc in tokens:
 	freqdist= FreqDist(doc.split())
 	reversed_file.append(freqdist)
 from operator import itemgetter
+
+reversed_liste=[]
+for doc in range(0,len(reversed_file)) :
+	for item in reversed_file[doc].items():
+		reversed_line=[]
+		reversed_line.append(item[0])
+		reversed_line.append(doc+1)
+		reversed_line.append(item[1])
+		reversed_liste.append(reversed_line)
+
 reversed_txt=open("reversed.txt","w+", encoding="utf-8")
-for doc in range(0,len(reversed_file)) :
-	for item in reversed_file[doc].items():
-		line='('+item[0]+','+str(doc+1)+')->'+str(item[1])+'\n'
-		reversed_txt.write(line)
-index_txt=open("index.txt","w+", encoding="utf-8")
-line=""
-for doc in range(0,len(reversed_file)) :
-	index_txt.write('Doc : '+str(doc+1)+'\n')
-	for item in reversed_file[doc].items():
-		line='('+item[0]+','+str(item[1])+')\n'
-		index_txt.write(line)
+for line in reversed_liste:
+	reversed_line='('+line[0]+','+str(line[1])+')->'+str(line[2])+'\n'
+	reversed_txt.write(reversed_line)
 
-#solution 2
-index_dic=open("index_dic.txt","w+", encoding="utf-8")
-line=""
-dictionnaire=dict()		
-for doc in range(0,len(reversed_file)) :
-	word_dict=dict()
-	for item in reversed_file[doc].items():
-		word_dict[item[0]]=item[1]
-	dictionnaire[doc+1]=word_dict
+import pickle
 
+# write python dict to a file
+output = open('reversed.pkl', 'wb')
+pickle.dump(reversed_liste, output)
+output.close()
 
+end_time=time.time()
+print(end_time - start_time)
 
-def word_freq_per_doc(doc , reversed_file):
-	liste=[(item[0] , item[1])for item in reversed_file[doc].items()]
+def word_freq_per_doc(doc , reversed_liste):
+	liste=[[item[0],item[2]] for item in reversed_liste if item[1]==doc]
 	return(liste)
 
-def docs_freq_per_word(word , reversed_file):
-	liste=[]
-	for doc in range(0,len(reversed_file)):
-		for item in reversed_file[doc].items():
-			if(item[0]==word):
-				liste.append((doc+1 , item[1]))
+def docs_freq_per_word(word , reversed_liste):
+	liste=[[item[1],item[2]] for item in reversed_liste if item[0]==word]
 	return(liste)
 
 
