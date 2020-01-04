@@ -673,26 +673,26 @@ widht:300px</string>
    </widget>
    <widget class="QLineEdit" name="rappel">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
       <x>390</x>
       <y>780</y>
-      <width>61</width>
+      <width>161</width>
       <height>26</height>
      </rect>
     </property>
    </widget>
    <widget class="QLineEdit" name="precision">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
       <x>690</x>
       <y>780</y>
-      <width>61</width>
+      <width>141</width>
       <height>26</height>
      </rect>
     </property>

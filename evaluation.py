@@ -50,6 +50,8 @@ def index_req(file_name):
 		for c in doc:
 			if c not in punctuation:
 				doc_punc+=c
+			else :
+				doc_punc+=" "
 		new_doc=""
 		for word in doc_punc.split():
 			if word.lower() not in stopWords:

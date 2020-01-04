@@ -106,7 +106,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.Supposed.setItem(i, 0, QtWidgets.QTableWidgetItem(doc))
             i+=1
         supo_docs=req_docs_dict[int(index)]
-        sys_docs=[doc[0] for doc in PI]
+        print(supo_docs)
+        sys_docs=[str(doc[0]) for doc in PI]
+        print(sys_docs)
         self.rappel.setText(str(rappel(sys_docs,supo_docs)))
         self.precision.setText(str(precision(sys_docs,supo_docs)))
 app = QtWidgets.QApplication(sys.argv)

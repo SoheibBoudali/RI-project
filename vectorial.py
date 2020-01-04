@@ -22,6 +22,8 @@ def produit_interne(file , requete):
 	requete=requete.split()
 	i=1
 	pertinant_doc=[]
+	docs_zero=[]
+	poids=[]
 	while i < 3205:
 		document=[line for line in file if int(line["dic"])==(i)]
 		poid=0
@@ -31,8 +33,13 @@ def produit_interne(file , requete):
 					poid+=float(doc["weight"])
 		if poid != 0:
 			print(poid)
-			pertinant_doc.append([i,poid])
+			docs_zero.append(i)
+			poids.append(poid)
 		i+=1
+	sim=sum(poids)/len(poids)
+	for i in range(0,len(docs_zero)):
+		if poids[i]>sim:
+			pertinant_doc.append([docs_zero[i],poids[i]])
 	return pertinant_doc
 
 def Coef_de_Dice(file , requete):
