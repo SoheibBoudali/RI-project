@@ -121,16 +121,17 @@ def Mesure_de_jaccard(reversed_weights_liste , requete):
 
 
 
-
-requete="state home job"
+#test
+'''requete="state home job"
 start=time.time()
 print(produit_interne(reversed_weights_liste , requete))
 print(time.time()-start)
 print(Coef_de_Dice(reversed_weights_liste , requete))
 print(Mesure_de_cosinus(reversed_weights_liste , requete))
-print(Mesure_de_jaccard(reversed_weights_liste , requete))
+print(Mesure_de_jaccard(reversed_weights_liste , requete))'''
 
-'''liste=[[3,5],[1,0],[0,1]]
+liste=[[3,5],[1,7],[5,1]]
 liste.sort(reverse=True ) 
 
-print(liste[:2])'''
+for i in liste:
+	print(i)

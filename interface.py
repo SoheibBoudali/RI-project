@@ -41,43 +41,49 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             self.bool_result.setText('non valide request')
     def vect(self):
+        pkl_file = open('reversed_weights.pkl', 'rb')
+        reversed_weights_liste = pickle.load(pkl_file)
+        pkl_file.close()
         result=""
         req=self.vect_req.text()
         if req == "":
-            self.vect_result.setText('requete vide')
+            self.vect_result.setText('empty request')
         else:	
-            file=change_vect("weights_reversed.txt")
             if self.comboBox.currentText()=="produit_interne":
-                liste=produit_interne(file , req)
+                liste=produit_interne(reversed_weights_liste , req)
                 if len(liste) != 0:
+                    liste.sort(reverse=True)
                     for l in liste:
-                        result+="document: "+str(l[0])+'\n'
+                        result+="document: "+str(l[1])+" similarity "+str(l[0])+'\n'
                     self.vect_result.setText(result)
                 else:
                     self.vect_result.setText("no pertinant document")
             else:
                 if self.comboBox.currentText()=="Coef_de_Dice":
-                    liste=Coef_de_Dice(file , req)
+                    liste=Coef_de_Dice(reversed_weights_liste , req)
                     if len(liste) != 0:
+                        liste.sort(reverse=True)
                         for l in liste:
-                            result+="document: "+str(l[0])+'\n'
+                            result+="document: "+str(l[1])+" similarity "+str(l[0])+'\n'
                         self.vect_result.setText(result)
                     else:
                         self.vect_result.setText("no pertinant document")
                 else:
                     if self.comboBox.currentText()=="Messure_de_cosinus":
-                        liste=Mesure_de_cosinus(file , req)
+                        liste=Mesure_de_cosinus(reversed_weights_liste, req)
                         if len(liste) != 0:
+                            liste.sort(reverse=True)
                             for l in liste:
-                                result+="document: "+str(l[0])+'\n'
+                                result+="document: "+str(l[1])+" similarity "+str(l[0])+'\n'
                             self.vect_result.setText(result)
                         else:
                             self.vect_result.setText("no pertinant document")
                     else:
-                        liste=Mesure_de_jaccard(file , req)
+                        liste=Mesure_de_jaccard(reversed_weights_liste , req)
                         if len(liste) != 0:
+                            liste.sort(reverse=True)
                             for l in liste:
-                                result+="document: "+str(l[0])+'\n'
+                                result+="document: "+str(l[1])+" similarity "+str(l[0])+'\n'
                             self.vect_result.setText(result)
                         else:
                             self.vect_result.setText("no pertinant document")
