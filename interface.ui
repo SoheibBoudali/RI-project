@@ -461,15 +461,15 @@ widht:300px</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>770</y>
-      <width>291</width>
+      <x>490</x>
+      <y>750</y>
+      <width>90</width>
       <height>41</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>291</width>
+      <width>90</width>
       <height>0</height>
      </size>
     </property>
@@ -492,15 +492,15 @@ widht:300px</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>770</y>
-      <width>291</width>
+      <x>490</x>
+      <y>780</y>
+      <width>90</width>
       <height>41</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>291</width>
+      <width>90</width>
       <height>0</height>
      </size>
     </property>
@@ -550,7 +550,7 @@ widht:300px</string>
     <property name="geometry">
      <rect>
       <x>890</x>
-      <y>780</y>
+      <y>610</y>
       <width>90</width>
       <height>32</height>
      </rect>
@@ -642,7 +642,7 @@ widht:300px</string>
       <x>480</x>
       <y>640</y>
       <width>501</width>
-      <height>141</height>
+      <height>111</height>
      </rect>
     </property>
     <column>
@@ -671,28 +671,106 @@ widht:300px</string>
      </property>
     </column>
    </widget>
-   <widget class="QLineEdit" name="rappel">
+   <widget class="QLineEdit" name="rappel_pi">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>780</y>
-      <width>161</width>
+      <x>610</x>
+      <y>760</y>
+      <width>51</width>
       <height>26</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="precision">
+   <widget class="QLineEdit" name="precision_pi">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>780</y>
-      <width>141</width>
+      <x>610</x>
+      <y>790</y>
+      <width>51</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="rappel_cd">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>760</y>
+      <width>51</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="rappel_mc">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>760</y>
+      <width>51</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="rappel_mj">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>760</y>
+      <width>51</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="precision_cd">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>790</y>
+      <width>51</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="precision_mc">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>790</y>
+      <width>51</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="precision_mj">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>790</y>
+      <width>51</width>
       <height>26</height>
      </rect>
     </property>
