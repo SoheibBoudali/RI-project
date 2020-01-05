@@ -129,9 +129,3 @@ print(time.time()-start)
 print(Coef_de_Dice(reversed_weights_liste , requete))
 print(Mesure_de_cosinus(reversed_weights_liste , requete))
 print(Mesure_de_jaccard(reversed_weights_liste , requete))'''
-
-liste=[[3,5],[1,7],[5,1]]
-liste.sort(reverse=True ) 
-
-for i in liste:
-	print(i)

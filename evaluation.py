@@ -1,6 +1,7 @@
 from nltk.corpus import stopwords
 import string
-
+import pickle
+import time
 #create a fuction that read qrels file and return for each req a liste of docs
 def req_docs(file_name):
 	file=open(file_name,"r",encoding="utf-8").readlines()
@@ -22,8 +23,13 @@ def req_docs(file_name):
 				exit=1
 		i+=cpt
 		dic[int(line_i[0])]=docs
+	output = open('req_docs_dict.pkl', 'wb')
+	pickle.dump(dic, output)
+	output.close()
 	return dic
-#print(req_docs("cacm/qrels.text"))
+'''start=time.time()
+print(req_docs("cacm/qrels.text"))
+print(time.time()-start)'''
 
 #create a function that read query file and return dictionnaire of req
 def index_req(file_name):
@@ -61,8 +67,13 @@ def index_req(file_name):
 	for doc in new_liste:
 		dic[i]=doc
 		i+=1
+	output = open('index_req.pkl', 'wb')
+	pickle.dump(dic, output)
+	output.close()
 	return dic
-#index_req("cacm/query.text")
+start=time.time()
+print(index_req("cacm/query.text"))
+print(time.time()-start)
 
 def rappel(sys_pert_docs , supo_pert_docs):
 	intersection=len([doc for doc in sys_pert_docs if doc in supo_pert_docs])
