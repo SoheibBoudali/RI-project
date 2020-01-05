@@ -76,13 +76,13 @@ background-color:rgb(33, 37, 41)</string>
      <rect>
       <x>150</x>
       <y>50</y>
-      <width>100</width>
+      <width>150</width>
       <height>41</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>100</width>
+      <width>150</width>
       <height>0</height>
      </size>
     </property>

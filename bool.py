@@ -1,27 +1,9 @@
-def change_bool(index_file):
-	special_chars="(,)"
-	file = open(index_file , "r" , encoding="utf-8").read()
-	file=file.split('\n')
-	Liste_of_docs=[]
-	for line in range(0,len(file)):
-		if file[line].startswith("Doc"):
-			line+=1
-			words=[]
-			while(line<len(file) and not file[line].startswith("Doc")):
-				new_line=""
-				for char in file[line]:
-					if char in special_chars:
-						new_line+=' '
-					else:
-						new_line+=char
-				new_l=new_line.split()
-				dic=dict()
-				dic["word"]=new_l[0]
-				dic["freq"]=new_l[1]
-				words.append(dic)
-				line+=1
-			Liste_of_docs.append(words)
-	return Liste_of_docs
+import pickle
+import time 
+pkl_file = open('index_dic.pkl', 'rb')
+index = pickle.load(pkl_file)
+pkl_file.close()
+
 def validate(requete):
 	if requete=="":
 		return False
@@ -45,7 +27,7 @@ def validate(requete):
 				return False
 		return True
 
-def evaluate(requete , Liste_of_docs):
+def evaluate(requete ,index):
 	pert_docs=[]
 	opr_not="not"
 	not_position=[]
@@ -54,15 +36,13 @@ def evaluate(requete , Liste_of_docs):
 		if requete_init[i].lower()==opr_not:
 			not_position.append(i)
 	requete_init = [r for r in requete_init if r.lower()!=opr_not]
-	for doc in range(0,len(Liste_of_docs)):
+	for i in range (1,len(index)+1):
 		req=[r for r in requete_init]
-		for i in range(0,len(requete_init),2):
-			for word in range(0,len(Liste_of_docs[doc])):
-				if Liste_of_docs[doc][word]["word"].lower()== req[i].lower():
-					req[i]=1
-					break
-			if req[i]!=1:
-				req[i]=0
+		for j in range(0,len(requete_init),2):
+			if req[j].lower() in [key for key in index[i]]:
+				req[j]=1
+			if req[j]!=1:
+				req[j]=0
 		for pos in not_position:
 			req.insert(pos,opr_not)
 		req_string=""
@@ -70,12 +50,10 @@ def evaluate(requete , Liste_of_docs):
 			req_string+=' '+str(r)
 		result = eval(req_string)
 		if(result == 1):
-			pert_docs.append('Documment : '+str(doc+1))
+			pert_docs.append('Documment : '+str(i))
 	return pert_docs
 
-'''Liste_of_docs=change("index.txt")
-requete="state and repeated or roots and not home"
-if validate(requete):
-	print(evaluate(requete , Liste_of_docs))
-else:
-	print('requete non valide')'''
+'''request="state or love or not preliminary and not hate"
+start=time.time()
+print(evaluate_dict(request ,index))
+print(time.time()-start)'''

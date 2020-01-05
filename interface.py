@@ -6,6 +6,7 @@ from PySide2.QtCore import Slot, Qt
 from bool import *
 from vectorial import *
 from evaluation import *
+import pickle
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, obj=None, **kwargs):
@@ -23,20 +24,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Evaluate.clicked.connect(self.evaluation)
     @Slot()
     def bool(self):
-    	Liste_of_docs=change_bool("index.txt")
-    	requete=self.bool_req.text()
-    	Liste=[]
-    	if validate(requete):
-    		Liste=evaluate(requete , Liste_of_docs)
-    		result=""
-    		if(len(Liste)== 0):
-    			self.bool_result.setText('no pertinant document')
-    		else:
-	    		for l in Liste:
-	    			result+=l+'\n'
-	    		self.bool_result.setText(result)
-    	else:
-    		self.bool_result.setText('requete non valide')
+        pkl_file = open('index_dic.pkl', 'rb')
+        index = pickle.load(pkl_file)
+        pkl_file.close()
+        requete=self.bool_req.text()
+        Liste=[]
+        if validate(requete):
+            Liste=evaluate(requete , index)
+            result=""
+            if(len(Liste)== 0):
+                self.bool_result.setText('no pertinant document')
+            else:
+                for l in Liste:
+                    result+=l+'\n'
+                self.bool_result.setText(result)
+        else:
+            self.bool_result.setText('requete non valide')
     def vect(self):
         result=""
         req=self.vect_req.text()
