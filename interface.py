@@ -39,7 +39,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     result+=l+'\n'
                 self.bool_result.setText(result)
         else:
-            self.bool_result.setText('requete non valide')
+            self.bool_result.setText('non valide request')
     def vect(self):
         result=""
         req=self.vect_req.text()

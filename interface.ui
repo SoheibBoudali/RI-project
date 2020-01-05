@@ -117,13 +117,13 @@ widht:300px</string>
      <rect>
       <x>700</x>
       <y>40</y>
-      <width>100</width>
+      <width>150</width>
       <height>41</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>100</width>
+      <width>150</width>
       <height>0</height>
      </size>
     </property>

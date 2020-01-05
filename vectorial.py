@@ -1,120 +1,136 @@
-def change_vect(file):
-	special_chars="(,)->"
-	File=open(file,"r",encoding="utf-8")
-	lines=File.readlines()
-	liste=[]
-	for line in lines:
-		dic= dict()
-		new_line=""
-		for char in line:
-			if char in special_chars:
-				new_line+=' '
-			else:
-				new_line+=char
-		new_l=new_line.split()
-		dic["word"] = new_l[0]
-		dic["dic"] = new_l[1]
-		dic["weight"] = new_l[2]
-		liste.append(dic)
-	return liste
+import pickle
+from math import *
+import time
 
-def produit_interne(file , requete):
+pkl_file = open('reversed_weights.pkl', 'rb')
+reversed_weights_liste = pickle.load(pkl_file)
+pkl_file.close()
+
+def word_weight_per_doc(doc , reversed_weights_liste):
+	liste=[[item[0],item[2]] for item in reversed_weights_liste if item[1]==doc]
+	return(liste)
+
+def produit_interne(reversed_weights_liste , requete):
 	requete=requete.split()
 	i=1
 	pertinant_doc=[]
 	docs_zero=[]
 	poids=[]
-	while i < 3205:
-		document=[line for line in file if int(line["dic"])==(i)]
+	nbrs_document=len(set([item[1] for item in reversed_weights_liste]))
+	while i < nbrs_document+1:
+		document=word_weight_per_doc(i,reversed_weights_liste)
 		poid=0
-		for doc in document:
+		for word_weight in document:
 			for word in requete:
-				if word.lower()==doc["word"]:
-					poid+=float(doc["weight"])
-		if poid != 0:
-			print(poid)
+				if word.lower()== word_weight[0]:
+					poid+=word_weight[1]
+		if poid>0:
 			docs_zero.append(i)
 			poids.append(poid)
 		i+=1
-	sim=sum(poids)/len(poids)
 	for i in range(0,len(docs_zero)):
-		if poids[i]>sim:
-			pertinant_doc.append([docs_zero[i],poids[i]])
+		pertinant_doc.append([poids[i],docs_zero[i]])
 	return pertinant_doc
 
-def Coef_de_Dice(file , requete):
+def Coef_de_Dice(reversed_weights_liste , requete):
 	requete=requete.split()
 	i=1
 	pertinant_doc=[]
-	while i < 3205:
-		document=[line for line in file if int(line["dic"])==(i)]
+	docs_zero=[]
+	poids=[]
+	nbrs_document=len(set([item[1] for item in reversed_weights_liste]))
+	while i < nbrs_document+1:
+		document=word_weight_per_doc(i,reversed_weights_liste)
+		poid=0
 		top=0
 		down_ti=0
 		down_qi=0
-		poid=0
-		for doc in document:
+		for word_weight in document:
 			for word in requete:
-				if word.lower()==doc["word"]:
-					top+=float(doc["weight"])
-					down_ti+=float(doc["weight"])*float(doc["weight"])
+				if word.lower()== word_weight[0]:
+					top+=float(word_weight[1])
+					down_ti+=top*top
 					down_qi+=1
-		if down_qi != 0 :
+		if down_qi > 0 :
 			poid=(2*top) / (down_ti + down_qi)
-			print("document :"+str(i)+" poid "+str(poid))
-			if poid != 0:
-				pertinant_doc.append([i,poid])
+			if poid>0:
+				docs_zero.append(i)
+				poids.append(poid)
 		i+=1
+	for i in range(0,len(docs_zero)):
+		pertinant_doc.append([poids[i],docs_zero[i]])
 	return pertinant_doc
 
-def Mesure_de_cosinus(file , requete):
+def Mesure_de_cosinus(reversed_weights_liste , requete):
 	requete=requete.split()
 	i=1
 	pertinant_doc=[]
-	while i < 3205:
-		document=[line for line in file if int(line["dic"])==(i)]
+	docs_zero=[]
+	poids=[]
+	nbrs_document=len(set([item[1] for item in reversed_weights_liste]))
+	while i < nbrs_document+1:
+		document=word_weight_per_doc(i,reversed_weights_liste)
+		poid=0
 		top=0
 		down_ti=0
 		down_qi=0
-		poid=0
-		for doc in document:
+		for word_weight in document:
 			for word in requete:
-				if word.lower()==doc["word"]:
-					top+=float(doc["weight"])
-					down_ti+=float(doc["weight"])*float(doc["weight"])
+				if word.lower()== word_weight[0]:
+					top+=float(word_weight[1])
+					down_ti+=top*top
 					down_qi+=1
-		if down_qi != 0 :
+		if down_qi > 0 :
 			poid=top / sqrt(down_ti + down_qi)
-			print("document :"+str(i)+" poid "+str(poid))
-			if poid != 0:
-				pertinant_doc.append([i,poid])
+			if poid > 0:
+				docs_zero.append(i)
+				poids.append(poid)
 		i+=1
+	for i in range(0,len(docs_zero)):
+		pertinant_doc.append([poids[i],docs_zero[i]])
 	return pertinant_doc
 
-def Mesure_de_jaccard(file , requete):
+def Mesure_de_jaccard(reversed_weights_liste , requete):
 	requete=requete.split()
 	i=1
 	pertinant_doc=[]
-	while i < 3205:
-		document=[line for line in file if int(line["dic"])==(i)]
+	docs_zero=[]
+	poids=[]
+	nbrs_document=len(set([item[1] for item in reversed_weights_liste]))
+	while i < nbrs_document+1:
+		document=word_weight_per_doc(i,reversed_weights_liste)
+		poid=0
 		top=0
 		down_ti=0
 		down_qi=0
-		poid=0
-		for doc in document:
+		for word_weight in document:
 			for word in requete:
-				if word.lower()==doc["word"]:
-					top+=float(doc["weight"])
-					down_ti+=float(doc["weight"])*float(doc["weight"])
+				if word.lower()== word_weight[0]:
+					top+=float(word_weight[1])
+					down_ti+=top*top
 					down_qi+=1
-		if down_qi != 0 :
+		if down_qi > 0 :
 			poid=top / ( down_ti + down_qi - top)
-			print("document :"+str(i)+" poid "+str(poid))
-			if poid != 0:
-				pertinant_doc.append([i,poid])
+			if poid > 0:
+				docs_zero.append(i)
+				poids.append(poid)
 		i+=1
+	for i in range(0,len(docs_zero)):
+		pertinant_doc.append([poids[i],docs_zero[i]])
 	return pertinant_doc
 
-from math import *
-'''file=change("weights_reversed.txt")
-requete="preliminary state" 
-print(Mesure_de_jaccard(file , requete))'''
+
+
+
+requete="state home job"
+start=time.time()
+print(produit_interne(reversed_weights_liste , requete))
+print(time.time()-start)
+print(Coef_de_Dice(reversed_weights_liste , requete))
+print(Mesure_de_cosinus(reversed_weights_liste , requete))
+print(Mesure_de_jaccard(reversed_weights_liste , requete))
+
+'''liste=[[3,5],[1,0],[0,1]]
+liste.sort(reverse=True ) 
+
+print(liste[:2])'''
