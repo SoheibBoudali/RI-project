@@ -88,20 +88,4 @@ supo_pert_docs=[2,4,5]
 print(rappel(sys_pert_docs,supo_pert_docs))
 print(precision(sys_pert_docs,supo_pert_docs))'''
 
-supo=['0268', '1696', '1892', '2069', '2123', '2297', '2373', '2667', '2862', '2970', '2996', '3078', '3098']
-sys_pi=['1696', '268', '3120', '942', '20', '1410', '2931', '1194', '3141', '3073', '3043', '2376', '2342']
-sys_cd=['2682', '2217', '2046', '2726', '1359', '1956', '1811', '1098', '2499', '1554', '3081', '2911', '3165']
-sys_mc=['1696', '268', '3141', '3073', '3043', '2376', '2342', '2320', '1749', '412', '2844', '927', '293']
-sys_mj=['2682', '2217', '2046', '2726', '1359', '1956', '1811', '1098', '2499', '1554', '3081', '2911', '3165']
 
-print(rappel(sys_pi,supo))
-print(precision(sys_pi,supo))
-
-print(rappel(sys_cd,supo))
-print(precision(sys_cd,supo))
-
-print(rappel(sys_mc,supo))
-print(precision(sys_mc,supo))
-
-print(rappel(sys_mj,supo))
-print(precision(sys_mj,supo))

@@ -27,6 +27,7 @@ def produit_interne(reversed_weights_liste , requete):
 		if poid>0:
 			docs_zero.append(i)
 			poids.append(poid)
+			print(poid)
 		i+=1
 	for i in range(0,len(docs_zero)):
 		pertinant_doc.append([poids[i],docs_zero[i]])
@@ -56,6 +57,7 @@ def Coef_de_Dice(reversed_weights_liste , requete):
 			if poid>0:
 				docs_zero.append(i)
 				poids.append(poid)
+				print(poid)
 		i+=1
 	for i in range(0,len(docs_zero)):
 		pertinant_doc.append([poids[i],docs_zero[i]])
@@ -85,6 +87,7 @@ def Mesure_de_cosinus(reversed_weights_liste , requete):
 			if poid > 0:
 				docs_zero.append(i)
 				poids.append(poid)
+				print(poid)
 		i+=1
 	for i in range(0,len(docs_zero)):
 		pertinant_doc.append([poids[i],docs_zero[i]])
@@ -114,6 +117,7 @@ def Mesure_de_jaccard(reversed_weights_liste , requete):
 			if poid > 0:
 				docs_zero.append(i)
 				poids.append(poid)
+				print(poid)
 		i+=1
 	for i in range(0,len(docs_zero)):
 		pertinant_doc.append([poids[i],docs_zero[i]])
